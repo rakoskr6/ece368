@@ -1,0 +1,90 @@
+// Qsort
+Random array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 26655.288086 miliseconds
+
+Sorted array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 6902.416992 miliseconds
+
+Reverse sorted array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 6899.425049 miliseconds
+
+Random array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 20.384766 miliseconds
+
+Sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 4.847656 miliseconds
+
+Reverse sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 4.686035 miliseconds
+
+Random array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 27395.947998 miliseconds
+
+Sorted array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 6900.457275 miliseconds
+
+Reverse sorted array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 6898.861816 miliseconds
+
+Random array of 100 thousand elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 20.310059 miliseconds
+
+
+Benchmarking Complete:
+	Total Time : 81702.625732 miliseconds
+
+
+// Radix sort
+Random array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 21484.957031 miliseconds
+
+Sorted array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10354.821289 miliseconds
+
+Reverse sorted array of 100 million elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10340.115723 miliseconds
+
+Random array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 23.756104 miliseconds
+
+Sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10.174805 miliseconds
+
+Reverse sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10.072021 miliseconds
+
+Random array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 22551.642090 miliseconds
+
+Sorted array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10424.145996 miliseconds
+
+Reverse sorted array of 100 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 10419.169922 miliseconds
+
+Random array of 100 thousand elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	array sorted in 26.012939 miliseconds
+
+
+Benchmarking Complete:
+	Total Time : 85644.867920 miliseconds
