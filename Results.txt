@@ -1,90 +1,57 @@
 // Qsort
-Random array of 100 million elements
+Random array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 26655.288086 miliseconds
+	file sorted in 235.281006 milliseconds
 
-Sorted array of 100 million elements
+Sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 6902.416992 miliseconds
+	file sorted in 55.151855 milliseconds
 
-Reverse sorted array of 100 million elements
+Nearly sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 6899.425049 miliseconds
+	file sorted in 54.823975 milliseconds
+
+Less nearly sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 54.755371 milliseconds
+
+Reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 54.900146 milliseconds
 
 Random array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 20.384766 miliseconds
+	file sorted in 20.120117 milliseconds
 
 Sorted array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 4.847656 miliseconds
+	file sorted in 4.751953 milliseconds
 
 Reverse sorted array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 4.686035 miliseconds
+	file sorted in 4.723145 milliseconds
 
-Random array of 100 million elements (with negatives)
+Random array of 1 million elements (with negatives)
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 27395.947998 miliseconds
+	file sorted in 239.014893 milliseconds
 
-Sorted array of 100 million elements (with negatives)
+Sorted array of 1 million elements (with negatives)
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 6900.457275 miliseconds
+	file sorted in 54.864258 milliseconds
 
-Reverse sorted array of 100 million elements (with negatives)
+Reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 6898.861816 miliseconds
+	file sorted in 56.330811 milliseconds
 
-Random array of 100 thousand elements (with negatives)
+Nearly reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	array sorted in 20.310059 miliseconds
+	file sorted in 55.078857 milliseconds
 
+Less nearly reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.006104 milliseconds
 
 Benchmarking Complete:
-	Total Time : 81702.625732 miliseconds
+	Total Time : 944.802490 milliseconds
 
 
-// Radix sort
-Random array of 100 million elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 21484.957031 miliseconds
-
-Sorted array of 100 million elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10354.821289 miliseconds
-
-Reverse sorted array of 100 million elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10340.115723 miliseconds
-
-Random array of 100 thousand elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 23.756104 miliseconds
-
-Sorted array of 100 thousand elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10.174805 miliseconds
-
-Reverse sorted array of 100 thousand elements
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10.072021 miliseconds
-
-Random array of 100 million elements (with negatives)
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 22551.642090 miliseconds
-
-Sorted array of 100 million elements (with negatives)
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10424.145996 miliseconds
-
-Reverse sorted array of 100 million elements (with negatives)
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 10419.169922 miliseconds
-
-Random array of 100 thousand elements (with negatives)
-	ARRAY IS CORRECTLY SORTED
-	array sorted in 26.012939 miliseconds
-
-
-Benchmarking Complete:
-	Total Time : 85644.867920 miliseconds
