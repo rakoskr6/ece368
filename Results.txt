@@ -1,57 +1,116 @@
-// Qsort
+//TIM Sort
+
 Random array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 235.281006 milliseconds
+	file sorted in 324.855713 milliseconds
 
 Sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 55.151855 milliseconds
+	file sorted in 8.607910 milliseconds
 
 Nearly sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 54.823975 milliseconds
+	file sorted in 11.443115 milliseconds
 
 Less nearly sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 54.755371 milliseconds
+	file sorted in 11.457031 milliseconds
 
 Reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 54.900146 milliseconds
+	file sorted in 8.823242 milliseconds
 
 Random array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 20.120117 milliseconds
+	file sorted in 26.802002 milliseconds
 
 Sorted array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 4.751953 milliseconds
+	file sorted in 0.847168 milliseconds
 
 Reverse sorted array of 100 thousand elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 4.723145 milliseconds
+	file sorted in 0.872070 milliseconds
 
 Random array of 1 million elements (with negatives)
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 239.014893 milliseconds
+	file sorted in 323.253906 milliseconds
 
 Sorted array of 1 million elements (with negatives)
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 54.864258 milliseconds
+	file sorted in 8.574951 milliseconds
 
 Reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 56.330811 milliseconds
+	file sorted in 9.128174 milliseconds
 
 Nearly reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 55.078857 milliseconds
+	file sorted in 13.139160 milliseconds
 
 Less nearly reverse sorted array of 1 million elements
 	ARRAY IS CORRECTLY SORTED
-	file sorted in 55.006104 milliseconds
+	file sorted in 12.391113 milliseconds
 
 Benchmarking Complete:
-	Total Time : 944.802490 milliseconds
+	Total Time : 760.195557 milliseconds
 
 
+
+
+
+// Qsort
+Random array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 192.995850 milliseconds
+
+Sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.927979 milliseconds
+
+Nearly sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.387939 milliseconds
+
+Less nearly sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.411133 milliseconds
+
+Reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.253906 milliseconds
+
+Random array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 16.254150 milliseconds
+
+Sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 4.781006 milliseconds
+
+Reverse sorted array of 100 thousand elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 4.773193 milliseconds
+
+Random array of 1 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 194.137939 milliseconds
+
+Sorted array of 1 million elements (with negatives)
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.219971 milliseconds
+
+Reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 55.294922 milliseconds
+
+Nearly reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 66.459961 milliseconds
+
+Less nearly reverse sorted array of 1 million elements
+	ARRAY IS CORRECTLY SORTED
+	file sorted in 67.809814 milliseconds
+
+Benchmarking Complete:
+	Total Time : 879.707764 milliseconds
