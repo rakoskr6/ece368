@@ -81,29 +81,27 @@ int main(int argc, char * * argv)
 	
 	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &Query1, &a);
 	printf("%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, Query1, a);
-	Users = malloc(sizeof(Users) * NumUsers);
+	Users = malloc(sizeof(UserInfo) * NumUsers);
 	
 
-	// make matrix to store distances
-	DistMtrx = malloc(sizeof(double) * NumUsers);
-	for (i = 0; i < NumUsers;  i++)
-	{
-		DistMtrx[i] = malloc(sizeof(double) * NumUsers);
-	}
-	
 	
 	/***** Between here ***********/
 	i = 0;
 	while (!feof(FID))
 	{
 		fscanf(FID,"%i, %i, %i, %i, %i, %i, %i, %i, %i\n",&Users[i].UserID,&Users[i].Age,&Users[i].Gender,&Users[i].Marital,&Users[i].Race,&Users[i].BirthPlace,&Users[i].Language,&Users[i].Occupation,&Users[i].Income);
-		printf("%i:  %i, %i, %i, %i, %i, %i, %i, %i, %i\n",i,Users[i].UserID,Users[i].Age,Users[i].Gender,Users[i].Marital,Users[i].Race,Users[i].BirthPlace,Users[i].Language,Users[i].Occupation,Users[i].Income);
+		printf("%i:  %i, %i, %i, %i, %i, %i, %i, %i		, %i\n",i,Users[i].UserID,Users[i].Age,Users[i].Gender,Users[i].Marital,Users[i].Race,Users[i].BirthPlace,Users[i].Language,Users[i].Occupation,Users[i].Income);
 		i++;
 	}
 	
 	/********* And here, the DistMtrx is being overwritten **************/
 	
-
+	// make matrix to store distances
+	DistMtrx = malloc(sizeof(double) * NumUsers);
+	for (i = 0; i < NumUsers;  i++)
+	{
+		DistMtrx[i] = malloc(sizeof(double) * NumUsers );
+	}
 
 	// Fill matrix with unnormalized distances
 	for (y = 0; y < NumUsers; y++)
