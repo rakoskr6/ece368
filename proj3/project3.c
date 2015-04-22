@@ -38,10 +38,21 @@ int main(int argc, char * * argv)
 	int NumUsers, Query1;
 	float d1, d2, a;
 	
-	fscanf(FID,"%i, %f, %f %i, %f\n",&NumUsers, &d1, &d2, &Query1, &a);
+	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &Query1, &a);
 	printf("%i, %f, %f %i, %f\n",NumUsers, d1, d2, Query1, a);
 	Users = malloc(sizeof(Users) * NumUsers);
-	
+	/*
+	Users[i].UserID = 56;
+	Users[i].Age = 5;
+	Users[i].Gender = 1;
+	Users[i].Marital = 0;
+	Users[i].Race = 3;
+	Users[i].BirthPlace = 3;
+	Users[i].Language = 4;
+	Users[i].Occupation = 2;
+	Users[i].Income = 45345;
+	printf("%i, %i, %i, %i, %i, %i, %i, %i, %i\n",Users[i].UserID,Users[i].Age,Users[i].Gender,Users[i].Marital,Users[i].Race,Users[i].BirthPlace,Users[i].Language,Users[i].Occupation,Users[i].Income);
+	*/
 	
 	while (!feof(FID))
 	{
