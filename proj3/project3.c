@@ -60,7 +60,7 @@ void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
 
 void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
 {
-	
+
 	printf("Query2\n");
 }
 
@@ -89,7 +89,44 @@ void Query3 (int UserID, double **DistMtrx, float d, int NumUsers)
 
 void Query4 (int UserID, double **DistMtrx, float d, int NumUsers)
 {
-	printf("Query4\n");
+	int i = 1, Hops[NumUsers + 1], y = 1;
+	
+	for (i = 0; i <= NumUsers; i++)
+	{
+		Hops[i] = 0;
+	}
+	
+	for (y = 1; y <= NumUsers; y++)
+	{
+		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
+		{
+			for (i = 1; i <= NumUsers; i++)
+			{
+				if ((DistMtrx[y][i] > d) && (DistMtrx[y][i] > 0) && (i != UserID))
+				{
+					Hops[i] = 1;
+				}
+			}
+		}
+		
+	}	
+	y = 0;
+	for (i = 0; i <= NumUsers; i++)
+	{
+		y += Hops[i];
+	}
+	
+	printf("%i",y);
+	
+	for (i = 0; i <= NumUsers; i++)
+	{
+		if (Hops[i] == 1)
+		{
+			printf(", %i",i);
+		}
+	}
+	printf("\n");
+	
 }
 
 void Query5 (double **DistMtrx, float d, int NumUsers)
@@ -112,7 +149,46 @@ void Query5 (double **DistMtrx, float d, int NumUsers)
 		Num = 0;
 	}
 	Average = Average / NumUsers;
-	printf("%.0f",Average);
+	printf("%.0f\n",Average);
+}
+
+void Query6 (double **DistMtrx, float d, int NumUsers)
+{
+	int UserID = 1;
+	double Average = 0;
+	for (UserID = 1; UserID <= NumUsers; UserID++)
+	{
+		int i = 1, Hops[NumUsers + 1], y = 1;
+		
+		for (i = 0; i <= NumUsers; i++)
+		{
+			Hops[i] = 0;
+		}
+		
+		for (y = 1; y <= NumUsers; y++)
+		{
+			if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
+			{
+				for (i = 1; i <= NumUsers; i++)
+				{
+					if ((DistMtrx[y][i] > d) && (DistMtrx[y][i] > 0) && (i != UserID))
+					{
+						Hops[i] = 1;
+					}
+				}
+			}
+			
+		}	
+		y = 0;
+		for (i = 0; i <= NumUsers; i++)
+		{
+			y += Hops[i];
+		}
+		printf("%i\n",y);
+		Average += (double)y;
+	}
+	Average = Average / NumUsers;
+	printf("%.0f\n",Average);
 }
 
 
@@ -227,6 +303,16 @@ int main(int argc, char * * argv)
 	Query3(UserID,DistMtrx,d1,NumUsers);
 	Query4 (UserID, DistMtrx, d1, NumUsers);
 	Query5 (DistMtrx, d1, NumUsers);
+	Query6 (DistMtrx, d1, NumUsers);
+	
+	printf("\n");
+	
+	Query1(UserID, DistMtrx, d2, NumUsers);
+	Query2 (UserID, DistMtrx, d2, NumUsers, a);
+	Query3(UserID,DistMtrx,d2,NumUsers);
+	Query4 (UserID, DistMtrx, d2, NumUsers);
+	Query5 (DistMtrx, d2, NumUsers);
+	Query6 (DistMtrx, d2, NumUsers);
 	
 	printf("\n");
 	
