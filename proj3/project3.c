@@ -31,10 +31,11 @@ double Distance(UserInfo *First, UserInfo *Second)
 	return sqrt(TempSum);
 }
 
-void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
+void Query1(int UserID, double **DistMtrx, float d, int NumUsers)
 {
 	int y = 1;
 	int Min = 100;
+	float MinOut = 0;
 	for (y = 1; y <= NumUsers; y++)
 	{
 		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
@@ -46,7 +47,8 @@ void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
 		}
 		
 	}	
-	printf("%i",Min);
+	MinOut = (float)Min/100.0;
+	printf("%.2f",MinOut);
 	for (y = 1; y <= NumUsers; y++)
 	{
 		if (DistMtrx[y][UserID] == Min)
@@ -57,11 +59,31 @@ void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
 	printf("\n");
 }
 
+double Dijkstras (int StartUser, int EndUser, double **DistMtrx, float d, int NumUsers)
+{ // function to return distance from Start to End node
+	
+	return 1;
+}
+
 
 void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
 {
+	int i = 1, NumNodes = 0;
+	double Dist = 0;
+	
+	for (i = 1; i <= NumUsers; i++)
+	{
+		if (i != NumUsers)
+		{
+			Dist = Dijkstras(UserID, i, DistMtrx, d, NumUsers);
+			if (Dist < a)
+			{
+				NumNodes++;
+			}
+		}
+	}
 
-	printf("Query2\n");
+	printf("%i\n",NumNodes);
 }
 
 
