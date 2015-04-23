@@ -156,10 +156,10 @@ void Query6 (double **DistMtrx, float d, int NumUsers)
 {
 	int UserID = 1;
 	double Average = 0;
+	int i = 1, Hops[NumUsers + 1], y = 1;
 	for (UserID = 1; UserID <= NumUsers; UserID++)
 	{
-		int i = 1, Hops[NumUsers + 1], y = 1;
-		
+
 		for (i = 0; i <= NumUsers; i++)
 		{
 			Hops[i] = 0;
@@ -177,17 +177,15 @@ void Query6 (double **DistMtrx, float d, int NumUsers)
 					}
 				}
 			}
-			
 		}	
 		y = 0;
 		for (i = 0; i <= NumUsers; i++)
 		{
 			y += Hops[i];
 		}
-		printf("%i\n",y);
 		Average += (double)y;
 	}
-	Average = Average / NumUsers;
+	Average = Average / (double)NumUsers;
 	printf("%.0f\n",Average);
 }
 
