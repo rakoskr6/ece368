@@ -31,6 +31,32 @@ double Distance(UserInfo *First, UserInfo *Second)
 	return sqrt(TempSum);
 }
 
+void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
+{
+	int y = 0;
+	double Min = 1.0;
+	for (y = 0; y < NumUsers; y++)
+	{
+		if (DistMtrx[y][UserID] > d)
+		{
+			if (DistMtrx[y][UserID] <= Min)
+			{
+				Min = DistMtrx[y][UserID];
+			}
+		}
+		
+	}	
+	printf("%f",Min);
+	for (y = 0; y < NumUsers; y++)
+	{
+		if (DistMtrx[y][UserID] == Min)
+		{
+			printf(", %i",y+1);
+		}
+	}
+}
+
+
 int main(int argc, char * * argv)
 {	
 	/* Initial checks and open file */
@@ -50,12 +76,12 @@ int main(int argc, char * * argv)
 	/* Declarations */
 	UserInfo *Users;
 	int i = 0, x = 0, y = 0;
-	int NumUsers, Query1;
+	int NumUsers, UserID;
 	float d1, d2, a;
 	double **DistMtrx, Max = 0;
 	
-	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &Query1, &a);
-	printf("\nInitial info:\n%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, Query1, a);
+	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &UserID, &a);
+	printf("\nInitial info:\n%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, UserID, a);
 	Users = malloc(sizeof(UserInfo) * NumUsers);
 	
 
@@ -89,7 +115,7 @@ int main(int argc, char * * argv)
 
 	}
 	printf("\nUnnormalized Distances\n");
-		for (y = 0; y < NumUsers; y++)
+	for (y = 0; y < NumUsers; y++)
 	{
 		for (x = 0; x < NumUsers; x++)
 		{
@@ -114,6 +140,9 @@ int main(int argc, char * * argv)
 		printf("\n");
 		
 	}
+	printf("\n");
+	Query1(1, DistMtrx, .5, NumUsers);
+	printf("\n");
 	
 	
 	fclose(FID);
