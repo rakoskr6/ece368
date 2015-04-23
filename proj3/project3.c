@@ -33,11 +33,11 @@ double Distance(UserInfo *First, UserInfo *Second)
 
 void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
 {
-	int y = 0;
-	double Min = 1.0;
-	for (y = 0; y < NumUsers; y++)
+	int y = 1;
+	int Min = 100;
+	for (y = 1; y <= NumUsers; y++)
 	{
-		if (DistMtrx[y][UserID] > d)
+		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
 		{
 			if (DistMtrx[y][UserID] <= Min)
 			{
@@ -46,14 +46,73 @@ void Query1 (int UserID, double **DistMtrx, float d, int NumUsers)
 		}
 		
 	}	
-	printf("%f",Min);
-	for (y = 0; y < NumUsers; y++)
+	printf("%i",Min);
+	for (y = 1; y <= NumUsers; y++)
 	{
 		if (DistMtrx[y][UserID] == Min)
 		{
-			printf(", %i",y+1);
+			printf(", %i",y);
 		}
 	}
+	printf("\n");
+}
+
+
+void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
+{
+	
+	printf("Query2\n");
+}
+
+
+void Query3 (int UserID, double **DistMtrx, float d, int NumUsers)
+{
+	int y = 1, Num = 0;
+	for (y = 1; y <= NumUsers; y++)
+	{
+		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
+		{
+			Num++;
+		}
+		
+	}	
+	printf("%i",Num);
+	for (y = 1; y <= NumUsers; y++)
+	{
+		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
+		{
+			printf(", %i",y);
+		}
+	}
+	printf("\n");
+}
+
+void Query4 (int UserID, double **DistMtrx, float d, int NumUsers)
+{
+	printf("Query4\n");
+}
+
+void Query5 (double **DistMtrx, float d, int NumUsers)
+{
+	double Average = 0;
+	int i = 1, y = 1, Num = 0;
+	
+	for (i = 1; i <= NumUsers; i++)
+	{
+		for (y = 1; y <= NumUsers; y++)
+		{
+			if ((DistMtrx[y][i] > d) && (DistMtrx[y][i] > 0))
+			{
+				Num++;
+			}
+			
+		}	
+	
+		Average += Num;
+		Num = 0;
+	}
+	Average = Average / NumUsers;
+	printf("%.0f",Average);
 }
 
 
@@ -75,14 +134,14 @@ int main(int argc, char * * argv)
 	
 	/* Declarations */
 	UserInfo *Users;
-	int i = 0, x = 0, y = 0;
+	int i = 1, x = 0, y = 0;
 	int NumUsers, UserID;
 	float d1, d2, a;
 	double **DistMtrx, Max = 0;
 	
 	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &UserID, &a);
 	printf("\nInitial info:\n%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, UserID, a);
-	Users = malloc(sizeof(UserInfo) * NumUsers);
+	Users = malloc(sizeof(UserInfo) * (NumUsers + 1));
 	
 
 	printf("Original file\n");
@@ -95,32 +154,40 @@ int main(int argc, char * * argv)
 	
 
 	// make matrix to store distances
-	DistMtrx = malloc(sizeof(double) * NumUsers);
-	for (i = 0; i < NumUsers;  i++)
+	DistMtrx = malloc(sizeof(double) * (NumUsers + 1));
+	for (i = 1; i <= NumUsers;  i++)
 	{
 		DistMtrx[i] = malloc(sizeof(double) * NumUsers );
 	}
 
 	// Fill matrix with unnormalized distances
-	for (y = 0; y < NumUsers; y++)
+	for (y = 1; y <= NumUsers; y++)
 	{
-		for (x = 0; x < NumUsers; x++)
+		for (x = 1; x <= NumUsers; x++)
 		{
-			DistMtrx[y][x] = Distance(&Users[y],&Users[x]);
-			if (DistMtrx[y][x] > Max)
+			if (x == y)
 			{
-				Max = DistMtrx[y][x];
+				DistMtrx[y][x] = -1;
+			}
+			else
+			{
+				DistMtrx[y][x] = Distance(&Users[y],&Users[x]);
+				if (DistMtrx[y][x] > Max)
+				{
+					Max = DistMtrx[y][x];
+				}
 			}
 		}
 
 	}
 	printf("\nUnnormalized Distances\n");
-	for (y = 0; y < NumUsers; y++)
+	for (y = 1; y <= NumUsers; y++)
 	{
-		for (x = 0; x < NumUsers; x++)
+		for (x = 1; x <= NumUsers; x++)
 		{
+
 			printf("(%i,%i):   ",x,y);
-			printf("%.1f     ",DistMtrx[y][x]);
+			printf("%.2f     ",DistMtrx[y][x]);
 		}
 		printf("\n");
 		
@@ -129,19 +196,38 @@ int main(int argc, char * * argv)
 	printf("\nNormalized Distances\n");
 	
 	// Normalize distances
-	for (y = 0; y < NumUsers; y++)
+	for (y = 1; y <= NumUsers; y++)
 	{
-		for (x = 0; x < NumUsers; x++)
+		for (x = 1; x <= NumUsers; x++)
 		{
-			DistMtrx[y][x] = 1.0 - DistMtrx[y][x] / Max;
+			if (x == y)
+			{
+				DistMtrx[y][x] = -1;
+			}
+			else
+			{
+				DistMtrx[y][x] = floor((1.0 - DistMtrx[y][x] / Max) * 100.0);
+				
+			}
 			printf("(%i,%i):   ",x,y);
-			printf("%.3f     ",DistMtrx[y][x]);
+			printf("%.0f     ",DistMtrx[y][x]);
+			
+		
 		}
 		printf("\n");
-		
 	}
 	printf("\n");
-	Query1(1, DistMtrx, .5, NumUsers);
+	d1 = floor(d1 * 100);
+	d2 = floor(d2 * 100);
+	a = floor(a * 100);
+	
+	
+	Query1(UserID, DistMtrx, d1, NumUsers);
+	Query2 (UserID, DistMtrx, d1, NumUsers, a);
+	Query3(UserID,DistMtrx,d1,NumUsers);
+	Query4 (UserID, DistMtrx, d1, NumUsers);
+	Query5 (DistMtrx, d1, NumUsers);
+	
 	printf("\n");
 	
 	
