@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <limits.h>
 
 
 typedef struct UserInfo {
@@ -53,16 +54,58 @@ void Query1(int UserID, double **DistMtrx, float d, int NumUsers)
 	{
 		if (DistMtrx[y][UserID] == Min)
 		{
-			printf(", %i",y);
+			printf(",%i",y);
 		}
 	}
 	printf("\n");
 }
 
+
+int MinDist(int *ShortDist, int *Included, int NumUsers)
+{ // returns min disance of not yet processed verticies
+	int Min = INT_MAX, MinIndex = 0, i;
+	
+	for (i = 1; i <= NumUsers; i++)
+	{
+		if ((Included[i] == 0) && (ShortDist[i] <= Min))
+		{
+			Min = ShortDist[i];
+			MinIndex = i;
+		}
+	}
+	return MinIndex;
+}
+
+
 double Dijkstras (int StartUser, int EndUser, double **DistMtrx, float d, int NumUsers)
 { // function to return distance from Start to End node
+	int ShortDist[NumUsers + 1], Included[NumUsers + 1];
+	int i, x, y;
 	
-	return 1;
+	for (i = 1; i <= NumUsers; i++)
+	{ // initial distances
+		ShortDist[i] = INT_MAX;
+		Included[i] = 0;
+	}
+	ShortDist[StartUser] = 0;
+	
+	for (i = 1; i < NumUsers; i++)
+	{
+		x = MinDist(ShortDist, Included, NumUsers); // min distance vertex from unproccessed
+		Included[x] = 1;
+	
+		for (y = 1; y <= NumUsers; y++)
+		{
+			if (!Included[y] && (DistMtrx[x][y] > d) && (ShortDist[y] != INT_MAX) && ((ShortDist[y] + DistMtrx[x][y]) < ShortDist[y]))
+			{ // if not processed, edge exists, and smller value exists, update shortest distance
+				ShortDist[y] = ShortDist[x] + DistMtrx[x][y]; 
+			}
+		}
+	
+	}
+	
+	
+	return ShortDist[EndUser];
 }
 
 
@@ -71,14 +114,14 @@ void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
 	int i = 1, NumNodes = 0;
 	double Dist = 0;
 	
-	for (i = 1; i <= NumUsers; i++)
+	for (i = 1; i <= NumUsers; i++) // Finds distance from source to all nodes
 	{
 		if (i != NumUsers)
 		{
 			Dist = Dijkstras(UserID, i, DistMtrx, d, NumUsers);
 			if (Dist < a)
 			{
-				NumNodes++;
+				NumNodes++; // found another node less than a
 			}
 		}
 	}
@@ -103,7 +146,7 @@ void Query3 (int UserID, double **DistMtrx, float d, int NumUsers)
 	{
 		if ((DistMtrx[y][UserID] > d) && (DistMtrx[y][UserID] > 0))
 		{
-			printf(", %i",y);
+			printf(",%i",y);
 		}
 	}
 	printf("\n");
@@ -144,7 +187,7 @@ void Query4 (int UserID, double **DistMtrx, float d, int NumUsers)
 	{
 		if (Hops[i] == 1)
 		{
-			printf(", %i",i);
+			printf(",%i",i);
 		}
 	}
 	printf("\n");
@@ -154,6 +197,7 @@ void Query4 (int UserID, double **DistMtrx, float d, int NumUsers)
 void Query5 (double **DistMtrx, float d, int NumUsers)
 {
 	double Average = 0;
+	double CutAverage;
 	int i = 1, y = 1, Num = 0;
 	
 	for (i = 1; i <= NumUsers; i++)
@@ -171,13 +215,15 @@ void Query5 (double **DistMtrx, float d, int NumUsers)
 		Num = 0;
 	}
 	Average = Average / NumUsers;
-	printf("%.0f\n",Average);
+	CutAverage = floor(100.0 * Average) / 100;
+	printf("%.2f\n",CutAverage);
 }
 
 void Query6 (double **DistMtrx, float d, int NumUsers)
 {
 	int UserID = 1;
 	double Average = 0;
+	double CutAverage;
 	int i = 1, Hops[NumUsers + 1], y = 1;
 	for (UserID = 1; UserID <= NumUsers; UserID++)
 	{
@@ -208,7 +254,8 @@ void Query6 (double **DistMtrx, float d, int NumUsers)
 		Average += (double)y;
 	}
 	Average = Average / (double)NumUsers;
-	printf("%.0f\n",Average);
+	CutAverage = floor(100.0 * Average) / 100;
+	printf("%.2f\n",CutAverage);
 }
 
 
@@ -236,15 +283,15 @@ int main(int argc, char * * argv)
 	double **DistMtrx, Max = 0;
 	
 	fscanf(FID,"%i, %f, %f, %i, %f\n",&NumUsers, &d1, &d2, &UserID, &a);
-	printf("\nInitial info:\n%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, UserID, a);
+	//printf("\nInitial info:\n%i, %f, %f %i, %f\n\n",NumUsers, d1, d2, UserID, a);
 	Users = malloc(sizeof(UserInfo) * (NumUsers + 1));
 	
 
-	printf("Original file\n");
+	//printf("Original file\n");
 	while (!feof(FID))
 	{
 		fscanf(FID,"%i, %i, %i, %i, %i, %i, %i, %i, %i\n",&Users[i].UserID,&Users[i].Age,&Users[i].Gender,&Users[i].Marital,&Users[i].Race,&Users[i].BirthPlace,&Users[i].Language,&Users[i].Occupation,&Users[i].Income);
-		printf("%i:  %i, %i, %i, %i, %i, %i, %i, %i, %i\n",i,Users[i].UserID,Users[i].Age,Users[i].Gender,Users[i].Marital,Users[i].Race,Users[i].BirthPlace,Users[i].Language,Users[i].Occupation,Users[i].Income);
+		//printf("%i:  %i, %i, %i, %i, %i, %i, %i, %i, %i\n",i,Users[i].UserID,Users[i].Age,Users[i].Gender,Users[i].Marital,Users[i].Race,Users[i].BirthPlace,Users[i].Language,Users[i].Occupation,Users[i].Income);
 		i++;
 	}
 	
@@ -276,20 +323,20 @@ int main(int argc, char * * argv)
 		}
 
 	}
-	printf("\nUnnormalized Distances\n");
+	//printf("\nUnnormalized Distances\n");
 	for (y = 1; y <= NumUsers; y++)
 	{
 		for (x = 1; x <= NumUsers; x++)
 		{
 
-			printf("(%i,%i):   ",x,y);
-			printf("%.2f     ",DistMtrx[y][x]);
+			//printf("(%i,%i):   ",x,y);
+			//printf("%.2f     ",DistMtrx[y][x]);
 		}
-		printf("\n");
+		//printf("\n");
 		
 	}
 
-	printf("\nNormalized Distances\n");
+	//printf("\nNormalized Distances\n");
 	
 	// Normalize distances
 	for (y = 1; y <= NumUsers; y++)
@@ -305,14 +352,14 @@ int main(int argc, char * * argv)
 				DistMtrx[y][x] = floor((1.0 - DistMtrx[y][x] / Max) * 100.0);
 				
 			}
-			printf("(%i,%i):   ",x,y);
-			printf("%.0f     ",DistMtrx[y][x]);
+			//printf("(%i,%i):   ",x,y);
+			//printf("%.0f     ",DistMtrx[y][x]);
 			
 		
 		}
-		printf("\n");
+		//printf("\n");
 	}
-	printf("\n");
+	//printf("\n");
 	d1 = floor(d1 * 100);
 	d2 = floor(d2 * 100);
 	a = floor(a * 100);
