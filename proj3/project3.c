@@ -112,6 +112,7 @@ double Dijkstras (int StartUser, int EndUser, double **DistMtrx, float d, int Nu
 
 void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
 {
+	// used algorithm from http://www.geeksforgeeks.org/
 	int i = 1, NumNodes = 0;
 	double Dist = 0;
 	
@@ -382,7 +383,7 @@ int main(int argc, char * * argv)
 	Query5 (DistMtrx, d2, NumUsers);
 	Query6 (DistMtrx, d2, NumUsers);
 	
-	printf("\n");
+	//printf("\n");
 	
 	
 	fclose(FID);
