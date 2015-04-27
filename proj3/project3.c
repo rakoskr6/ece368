@@ -79,7 +79,8 @@ int MinDist(int *ShortDist, int *Included, int NumUsers)
 
 double Dijkstras (int StartUser, int EndUser, double **DistMtrx, float d, int NumUsers)
 { // function to return distance from Start to End node
-	int ShortDist[NumUsers + 1], Included[NumUsers + 1];
+	int ShortDist[NumUsers + 1]; // shortest distance from StartUser to EndUser
+	int Included[NumUsers + 1]; // 1 if value is finalized
 	int i, x, y;
 	
 	for (i = 1; i <= NumUsers; i++)
@@ -96,15 +97,15 @@ double Dijkstras (int StartUser, int EndUser, double **DistMtrx, float d, int Nu
 	
 		for (y = 1; y <= NumUsers; y++)
 		{
-			if (!Included[y] && (DistMtrx[x][y] > d) && (ShortDist[y] != INT_MAX) && ((ShortDist[y] + DistMtrx[x][y]) < ShortDist[y]))
-			{ // if not processed, edge exists, and smller value exists, update shortest distance
+			if (!Included[y] && (DistMtrx[x][y] > d) && (ShortDist[x] != INT_MAX) && ((ShortDist[x] + DistMtrx[x][y]) < ShortDist[y]))
+			{ // if not processed, edge exists, and smaller value exists, update shortest distance
 				ShortDist[y] = ShortDist[x] + DistMtrx[x][y]; 
 			}
 		}
 	
 	}
 	
-	
+	//printf("Distance from %i to %i is %i\n",StartUser,EndUser,ShortDist[EndUser]);
 	return ShortDist[EndUser];
 }
 
@@ -116,7 +117,7 @@ void Query2 (int UserID, double **DistMtrx, float d, int NumUsers, float a)
 	
 	for (i = 1; i <= NumUsers; i++) // Finds distance from source to all nodes
 	{
-		if (i != NumUsers)
+		if (i != UserID)
 		{
 			Dist = Dijkstras(UserID, i, DistMtrx, d, NumUsers);
 			if (Dist < a)
